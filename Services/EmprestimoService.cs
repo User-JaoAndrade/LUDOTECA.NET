@@ -5,8 +5,17 @@ namespace LUDOTECA.Service
 {
     public static class EmprestimoService
     {
+        /// <summary>
+        /// Permite que um membro alugue um jogo da biblioteca.
+        /// - Valida se o membro existe e não possui outro jogo alugado.
+        /// - Valida se o jogo existe e está disponível.
+        /// - Define as datas de aluguel e devolução (7 dias de prazo).
+        /// - Atualiza os arquivos JSON de membros e jogos.
+        /// </summary>
         public static void EmprestarJogo()
         {
+            // Carrega os membros e jogos do JSON e transforma em dicionários com o ID como chave.
+            // Se o JSON estiver vazio ou não existir, cria dicionários vazios para evitar null.
             var lista_de_membros = JsonHelper.CarregarLista<Membro>("Data/Membros.json")
                                             ?.ToDictionary(m => m._Id, m => m)
                                             ?? new Dictionary<int, Membro>();
@@ -30,6 +39,7 @@ namespace LUDOTECA.Service
                     if (!lista_de_membros.ContainsKey(id_membro))
                         throw new KeyNotFoundException("ATENÇÃO: Membro não encontrado");
 
+                    // Obtém o objeto Membro correspondente ao ID informado pelo usuário
                     var membro = lista_de_membros[id_membro];
 
                     if (membro.Jogo_alugado != "Nenhum")
@@ -44,22 +54,26 @@ namespace LUDOTECA.Service
                     if (!lista_de_jogos.ContainsKey(id_jogo))
                         throw new KeyNotFoundException("ATENÇÃO: Jogo não encontrado");
 
+                    // Obtém o objeto Jogo correspondente ao ID informado pelo usuário
                     var jogo = lista_de_jogos[id_jogo];
 
+                    // Verifica se o jogo já foi alugado
                     if (!jogo.Disponivel)
                         throw new Exception("Jogo já alugado, volte outro dia");
 
+                    // Atualizando os dados
                     jogo.MudarJogoParaIndisponivel();
                     membro.AlterarNomeDoJogoAlugado(jogo.Nome);
                     membro.AlterarDataDoAluguel(DateTime.Now.Date);
                     membro.AlterarDataDaDevolucao(DateTime.Now.Date.AddDays(7.0));
 
+                    // Atualizando os arquivos JSON
                     JsonHelper.SalvarLista(lista_de_jogos.Values.ToList(), "Data/Biblioteca.json");
                     JsonHelper.SalvarLista(lista_de_membros.Values.ToList(), "Data/Membros.json");
 
                     Console.Write("Alugando jogo");
                     Helpers.AnimacaoDePontos(3);
-                    Console.WriteLine( "\n > JOGO ALUGADO COM SUCESSO <\n\n" +
+                    Console.WriteLine("\n > JOGO ALUGADO COM SUCESSO <\n\n" +
                                       $"Membro e ID: {membro.Nome} - {membro._Id}\n" +
                                       $"Jogo Alugado: {membro.Jogo_alugado}\n" +
                                       $"Dia do Aluguel: {membro.Data_do_aluguel}\n" +

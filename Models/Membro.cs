@@ -2,17 +2,19 @@ using System.Text.Json.Serialization;
 
 namespace LUDOTECA.Models
 {
+    /// <summary>
+    /// Representa um membro da Ludoteca.
+    /// Contém informações como ID, nome, jogo alugado e datas de aluguel e devolução.
+    /// </summary>
     public class Membro
     {
         private static Random rnd = new Random();
+        public int _Id { get; private set; } // Identificador ÚNICO do membro (usado como chave no dict)
+        public string? Nome { get; private set; } // Nome do membro
+        public string? Jogo_alugado { get; private set; } = "Nenhum"; // Nome do jogo que o usuário alugou
+        public DateTime Data_do_aluguel { get; private set; } = default; // Dia que o jogo foi alugado
+        public DateTime Data_de_devolucao { get; private set; } = default; // Dia que o jogo precisa ser devolvido
 
-        public int _Id { get; private set; }
-        public string? Nome { get; private set; }
-        public string? Jogo_alugado { get; private set; } = "Nenhum";
-        public DateTime Data_do_aluguel { get; private set; } = default;
-        public DateTime Data_de_devolucao { get; private set; } = default;
-
-        // Construtor padrão para cadastro de novo membro
         public Membro(string nome, List<Membro> Lista_de_membros)
         {
             Nome = nome;
@@ -21,12 +23,14 @@ namespace LUDOTECA.Models
             do
             {
                 novo_id = rnd.Next(100000, 1000000);
-            } while (Lista_de_membros.Exists(m => m._Id == novo_id));
+            } while (Lista_de_membros.Exists(m => m._Id == novo_id)); // Repete a operação caso o ID já exista
 
             _Id = novo_id;
         }
 
-        // Construtor para o JSON
+        /// <summary>
+        /// Construtor usado pelo JSON para desserialização.
+        /// </summary>
         [JsonConstructor]
         public Membro(int _Id, string? Nome, string? Jogo_alugado, DateTime Data_do_aluguel, DateTime Data_de_devolucao)
         {
@@ -52,6 +56,9 @@ namespace LUDOTECA.Models
             Jogo_alugado = nome_jogo;
         }
 
+        /// <summary>
+        /// Mostra informações detalhadas do membro recém-cadastrado
+        /// </summary>
         public void MostrarNovoMembroCadastrado()
         {
             Console.Write("\n\n>>> MEMBRO CADASTRADO COM SUCESSO <<<\n\n" +

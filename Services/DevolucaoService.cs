@@ -7,13 +7,16 @@ namespace LUDOTECA.Service
     public static class DevolucaoService
     {
         /// <summary>
-        /// Permite que um membro devolva um jogo alugado.
-        /// Atualiza o status do jogo para disponível, calcula multa caso haja atraso
-        /// e solicita a forma de pagamento (PIX ou Dinheiro).
-        /// Se o usuário cancelar a entrada da data de devolução, volta ao menu sem devolver o jogo.
+        /// Realiza o processo de devolução de um jogo.
+        /// - Verifica se o membro possui jogo alugado.
+        /// - Calcula multa em caso de atraso.
+        /// - Atualiza a disponibilidade do jogo e o status do membro.
+        /// - Persiste as alterações nos arquivos JSON.
         /// </summary>
         public static void DevolverJogo()
         {
+            // Carrega os membros e jogos do JSON e transforma em dicionários com o ID como chave.
+            // Se o JSON estiver vazio ou não existir, cria dicionários vazios para evitar null.
             var lista_de_membros = JsonHelper.CarregarLista<Membro>("Data/Membros.json")
                                             ?.ToDictionary(m => m._Id, m => m)
                                             ?? new Dictionary<int, Membro>();
@@ -34,12 +37,14 @@ namespace LUDOTECA.Service
 
                     if (!lista_de_membros.ContainsKey(id_membro))
                         throw new KeyNotFoundException("ATENÇÃO: Membro não encontrado");
-
+                    
+                    // Obtém o objeto Membro correspondente ao ID informado pelo usuário
                     var membro = lista_de_membros[id_membro];
 
                     if (membro.Jogo_alugado == "Nenhum")
                         throw new Exception($"{membro.Nome} não possui jogo alugado.");
 
+                    // Procura na lista de jogos o objeto Jogo que possui o mesmo nome do jogo atualmente alugado pelo membro
                     var jogo = lista_de_jogos.Values.FirstOrDefault(j => j.Nome == membro.Jogo_alugado);
 
                     if (jogo == null)
@@ -55,6 +60,7 @@ namespace LUDOTECA.Service
                         break;
                     }
 
+                    // Verificando se existe uma multa
                     if (multa > 0)
                     {
                         Console.WriteLine($"\nO aluguel atrasou {multa / 2} dias. Multa: R$ {multa}");
@@ -118,6 +124,17 @@ namespace LUDOTECA.Service
             }
         }
 
+        /// <summary>
+        /// Solicita ao usuário a data de devolução e calcula multa por atraso.
+        /// - Considera R$2,00 por dia de atraso.
+        /// - Impede datas anteriores à data do aluguel.
+        /// - Retorna -1 caso o usuário cancele a operação.
+        /// </summary>
+        /// <param name="data_de_devolucao">Data prevista para devolução.</param>
+        /// <param name="data_de_aluguel">Data em que o jogo foi alugado.</param>
+        /// <returns>
+        /// Valor da multa (em reais). Retorna 0 se não houver atraso ou -1 se a operação for cancelada.
+        /// </returns>
         public static int CalculoDeMulta(DateTime data_de_devolucao, DateTime data_de_aluguel)
         {
             while (true)
@@ -138,11 +155,14 @@ namespace LUDOTECA.Service
                     if (!int.TryParse(Helpers.LerEntradaDeDados().Trim(), out int ano))
                         throw new FormatException("ANO INVALIDO: Informe um número inteiro");
 
+                    // Criando a Data de devolução informada pelo usuário
+                    // Calculando quantos dias se passaram após a data que o jogo devia ser devolvido
                     DateTime data_que_esta_devolvendo = new DateTime(ano, mes, dia);
                     TimeSpan diferenca = data_que_esta_devolvendo - data_de_devolucao;
 
+                    // Piada idiota caso o usuário informe que o dia devolvido foi ANTES do dia de aluguel
                     if (data_que_esta_devolvendo < data_de_aluguel)
-                        throw new Exception("\nTem um DeLorean? Viajante do tempo? Informa uma data válida");
+                        throw new Exception("\nTem um DeLorean? Viajante do tempo? Informe uma data válida");
 
                     return diferenca.Days * 2;
                 }
