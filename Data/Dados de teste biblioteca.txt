@@ -1,0 +1,30 @@
+[
+  {
+    "_Id": 590315,
+    "Nome": "Megaman X",
+    "Categoria": "A\u00E7\u00E3o e Aventura",
+    "AnoDeLancamento": 1993,
+    "Disponivel": false
+  },
+  {
+    "_Id": 750382,
+    "Nome": "Sonic the Hedgehog",
+    "Categoria": "Plataforma",
+    "AnoDeLancamento": 1991,
+    "Disponivel": true
+  },
+  {
+    "_Id": 852989,
+    "Nome": "Hollow Knight",
+    "Categoria": "Metroidlike",
+    "AnoDeLancamento": 2017,
+    "Disponivel": true
+  },
+  {
+    "_Id": 522462,
+    "Nome": "Street Fighter 6",
+    "Categoria": "Luta",
+    "AnoDeLancamento": 2023,
+    "Disponivel": true
+  }
+]

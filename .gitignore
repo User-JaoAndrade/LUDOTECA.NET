@@ -1,0 +1,12 @@
+# Compilados
+bin/
+obj/
+
+# Configurações locais do VS
+.vs/
+
+# Arquivos temporários
+*.user
+*.suo
+*.tmp
+*.log

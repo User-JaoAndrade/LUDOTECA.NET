@@ -1,0 +1,30 @@
+[
+  {
+    "_Id": 856309,
+    "Nome": "Joao Teste da Silva",
+    "Jogo_alugado": "Megaman X",
+    "Data_do_aluguel": "2025-09-19T00:00:00-03:00",
+    "Data_de_devolucao": "2025-09-26T00:00:00-03:00"
+  },
+  {
+    "_Id": 328493,
+    "Nome": "Leonardo Otolindo",
+    "Jogo_alugado": "Nenhum",
+    "Data_do_aluguel": "0001-01-01T00:00:00",
+    "Data_de_devolucao": "0001-01-01T00:00:00"
+  },
+  {
+    "_Id": 492571,
+    "Nome": "Alan Acordado",
+    "Jogo_alugado": "Nenhum",
+    "Data_do_aluguel": "0001-01-01T00:00:00",
+    "Data_de_devolucao": "0001-01-01T00:00:00"
+  },
+  {
+    "_Id": 456339,
+    "Nome": "sao 4:10 da manha e to mexendo nisso",
+    "Jogo_alugado": "Nenhum",
+    "Data_do_aluguel": "0001-01-01T00:00:00",
+    "Data_de_devolucao": "0001-01-01T00:00:00"
+  }
+]
