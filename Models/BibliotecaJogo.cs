@@ -4,8 +4,8 @@ namespace LUDOTECA.Models
 {
     public class Biblioteca
     {
-        public Dictionary<int, Jogo> Jogos { get; private set; } = new Dictionary<int, Jogo>();
-        public Dictionary<int, Membro> Membros { get; private set; } = new Dictionary<int, Membro>();
+        public Dictionary<int, Jogo> Jogos { get; private set; } = new Dictionary<int, Jogo>(); // [AV1-2]
+        public Dictionary<int, Membro> Membros { get; private set; } = new Dictionary<int, Membro>(); // [AV1-2]
 
         private static string CaminhoJogos = "Data/Biblioteca.json";
         private static string CaminhoMembros = "Data/Membros.json";

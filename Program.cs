@@ -36,15 +36,15 @@ namespace LUDOTECA
 
                 switch (opcao)
                 {
-                    case "1": JogoService.CadastrarJogo(biblioteca); break;
-                    case "2": MembroService.CadastrarMembro(biblioteca); break;
-                    case "3": ListagemService.ListarJogos(biblioteca); break;
-                    case "4": ListagemService.ListarMembros(biblioteca); break;
-                    case "5": EmprestimoService.EmprestarJogo(biblioteca); break;
-                    case "6": DevolucaoService.DevolverJogo(biblioteca); break;
-                    case "7": RelatorioService.MostrarRelatorio(); break;
-                    case "8": remocaoService.ExcluirMembro(biblioteca); break;
-                    case "9": remocaoService.ExcluirJogo(biblioteca); break;
+                    case "1": JogoService.CadastrarJogo(biblioteca); break; // [AV1-4-CadastrarJogo]
+                    case "2": MembroService.CadastrarMembro(biblioteca); break; // [AV1-4-CadastrarMembro]
+                    case "3": ListagemService.ListarJogos(biblioteca); break; // [AV1-4-ListarJogos]
+                    case "4": ListagemService.ListarMembros(biblioteca); break; // [AV1-4-ListarMembros]
+                    case "5": EmprestimoService.EmprestarJogo(biblioteca); break; // [AV1-4-EmprestarJogo]
+                    case "6": DevolucaoService.DevolverJogo(biblioteca); break; // [AV1-4-DevolverJogo]
+                    case "7": RelatorioService.MostrarRelatorio(); break; // [AV1-4-Ralatorio]
+                    case "8": remocaoService.ExcluirMembro(biblioteca); break; // [AV1-4-RemoverMembro]
+                    case "9": remocaoService.ExcluirJogo(biblioteca); break; // [AV1-4-RemoverJogo]
                     case "0":
                         Logger.Log("Programa finalizado");
                         Console.WriteLine("\nAté mais!");

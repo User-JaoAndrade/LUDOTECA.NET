@@ -6,11 +6,11 @@ namespace LUDOTECA.Models
     {
         private static Random rnd = new Random();
 
-        public int Id { get; private set; }
-        public string Nome { get; private set; }
-        public string JogoAlugado { get; private set; } = "Nenhum";
-        public DateTime DataAluguel { get; private set; } = default;
-        public DateTime DataDevolucao { get; private set; } = default;
+        public int Id { get; private set; } // [AV1-2]
+        public string Nome { get; private set; }// [AV1-2]
+        public string JogoAlugado { get; private set; } = "Nenhum"; // [AV1-2]
+        public DateTime DataAluguel { get; private set; } = default; // [AV1-2]
+        public DateTime DataDevolucao { get; private set; } = default; // [AV1-2]
 
         // Construtor para novo membro
         public Membro(string nome, List<Membro> listaExistente)

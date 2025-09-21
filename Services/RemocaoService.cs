@@ -10,7 +10,7 @@ namespace LUDOTECA.Service
         {
             while (true)
             {
-                try
+                try // [AV1-5]
                 {
                     Console.WriteLine("\n=== REMOVER MEMBRO ===\n");
                     Console.Write("ID do membro que deseja excluir: ");
@@ -32,18 +32,21 @@ namespace LUDOTECA.Service
                     Console.WriteLine($"\nMembro {membro.Nome} removido com sucesso!");
                     break;
                 }
-                catch (ArgumentException ex)
+                catch (ArgumentException ex) // [AV1-5]
                 {
+                    Logger.LogErro(ex);
                     Console.WriteLine(ex.Message);
                     if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
                 }
-                catch (FormatException)
+                catch (FormatException ex) // [AV1-5]
                 {
+                    Logger.LogErro(ex);
                     Console.WriteLine("ERRO: Informe um número inteiro.");
                     if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
                 }
-                catch (LudotecaException ex)
+                catch (LudotecaException ex) // [AV1-5]
                 {
+                    Logger.LogErro(ex);
                     Console.WriteLine($"ERRO: {ex.Message}");
                     if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
                 }

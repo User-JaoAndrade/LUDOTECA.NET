@@ -12,5 +12,26 @@
     "Categoria": "Plataforma",
     "AnoDeLancamento": 1991,
     "Disponivel": true
+  },
+  {
+    "Id": 738168,
+    "Nome": "Megaman X",
+    "Categoria": "A\u00E7\u00E3o",
+    "AnoDeLancamento": 1995,
+    "Disponivel": true
+  },
+  {
+    "Id": 707870,
+    "Nome": "Xadrez 2",
+    "Categoria": "Estrategia",
+    "AnoDeLancamento": 1500,
+    "Disponivel": true
+  },
+  {
+    "Id": 317023,
+    "Nome": "Hollow Knight Silksong",
+    "Categoria": "Metroidlike",
+    "AnoDeLancamento": 2025,
+    "Disponivel": true
   }
 ]

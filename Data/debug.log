@@ -9,3 +9,27 @@ StackTrace:    at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca bibliote
 21/09/2025 00:01:44 - Multa de R$792 gerada para Jao Teste da Silva
 21/09/2025 00:01:53 - Arquivos JSON e txt atualizados em 'DevolverJogo()'
 21/09/2025 00:02:39 - Programa finalizado
+21/09/2025 10:54:22 - Programa iniciado
+21/09/2025 10:58:15 - [ERRO] ArgumentException: Valor inválido. Informe um valor não vazio.
+StackTrace:    at LUDOTECA.Utils.Helpers.LerEntradaDeDados() in C:\Users\Not_Vitaminado\Documents\Program\LUDOTECA.NET\Utils\Helpers.cs:line 9
+   at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca biblioteca) in C:\Users\Not_Vitaminado\Documents\Program\LUDOTECA.NET\Services\JogoService.cs:line 24
+21/09/2025 10:58:39 - NOVO JOGO: Megaman X (738168) cadastrado com sucesso
+21/09/2025 10:58:55 - Programa finalizado
+21/09/2025 17:01:10 - Programa iniciado
+21/09/2025 17:02:29 - [ERRO] ArgumentException: Valor inválido. Informe um valor não vazio.
+StackTrace:    at LUDOTECA.Utils.Helpers.LerEntradaDeDados() in C:\Users\Not_Vitaminado\Documents\Program\LUDOTECA.NET\Utils\Helpers.cs:line 9
+   at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca biblioteca) in C:\Users\Not_Vitaminado\Documents\Program\LUDOTECA.NET\Services\JogoService.cs:line 21
+21/09/2025 17:02:32 - Programa finalizado
+21/09/2025 17:02:38 - Programa iniciado
+21/09/2025 17:04:15 - NOVO JOGO: Xadrez 2 (707870) cadastrado com sucesso
+21/09/2025 17:04:39 - Programa finalizado
+21/09/2025 17:05:37 - Programa iniciado
+21/09/2025 17:06:02 - NOVO JOGO: Hollow Knight Silksong (317023) cadastrado com sucesso
+21/09/2025 17:06:27 - Programa finalizado
+21/09/2025 17:09:06 - Programa iniciado
+21/09/2025 17:10:13 - Arquivos JSON e txt atualizados em 'EmprestarJogo'
+21/09/2025 17:11:40 - [ERRO] JogoIndisponivelException: O jogo 'Hollow Knight Silksong' já está alugado.
+StackTrace:    at LUDOTECA.Service.EmprestimoService.EmprestarJogo(Biblioteca biblioteca) in C:\Users\Not_Vitaminado\Documents\Program\LUDOTECA.NET\Services\EmprestimoService.cs:line 38
+21/09/2025 17:14:47 - Multa de R$4 gerada para João
+21/09/2025 17:15:02 - Arquivos JSON e txt atualizados em 'DevolverJogo()'
+21/09/2025 17:15:35 - Programa finalizado
