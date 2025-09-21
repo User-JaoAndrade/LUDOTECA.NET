@@ -1,92 +1,75 @@
-using LUDOTECA.Utils;
 using LUDOTECA.Models;
+using LUDOTECA.Utils;
+using LUDOTECA.Exceptions;
 
 namespace LUDOTECA.Service
 {
     public static class EmprestimoService
     {
-        /// <summary>
-        /// Permite que um membro alugue um jogo da biblioteca.
-        /// - Valida se o membro existe e não possui outro jogo alugado.
-        /// - Valida se o jogo existe e está disponível.
-        /// - Define as datas de aluguel e devolução (7 dias de prazo).
-        /// - Atualiza os arquivos JSON de membros e jogos.
-        /// </summary>
-        public static void EmprestarJogo()
+        public static void EmprestarJogo(Biblioteca biblioteca)
         {
-            // Carrega os membros e jogos do JSON e transforma em dicionários com o ID como chave.
-            // Se o JSON estiver vazio ou não existir, cria dicionários vazios para evitar null.
-            var lista_de_membros = JsonHelper.CarregarLista<Membro>("Data/Membros.json")
-                                            ?.ToDictionary(m => m._Id, m => m)
-                                            ?? new Dictionary<int, Membro>();
-
-            var lista_de_jogos = JsonHelper.CarregarLista<Jogo>("Data/Biblioteca.json")
-                                           ?.ToDictionary(j => j._Id, j => j)
-                                           ?? new Dictionary<int, Jogo>();
-
             while (true)
             {
                 try
                 {
-                    Console.WriteLine("\n\n\n\n==== Emprestar Jogo ====\n" +
-                                      "Prazo de devolução: > 7 DIAS < a partir da data do aluguel\n" +
-                                      "Multa: Em caso de ATRASO, cobraremos R$2,00 para CADA dia de atraso\n\n");
+                    Console.WriteLine("\n=== EMPRÉSTIMO DE JOGO ===");
+                    Console.WriteLine("Prazo: 7 dias | Multa: R$2 por dia\n");
 
-                    Console.Write("Informe o ID do membro\n-> ");
-                    if (!int.TryParse(Helpers.LerEntradaDeDados().Trim(), out int id_membro))
-                        throw new FormatException("ID do membro inválido! Informe um número inteiro.");
+                    Console.Write("ID do membro: ");
+                    if (!int.TryParse(Helpers.LerEntradaDeDados(), out int idMembro))
 
-                    if (!lista_de_membros.ContainsKey(id_membro))
-                        throw new KeyNotFoundException("ATENÇÃO: Membro não encontrado");
+                    if (!biblioteca.Membros.ContainsKey(idMembro))
+                        throw new MembroNaoEncontradoException(idMembro);
 
-                    // Obtém o objeto Membro correspondente ao ID informado pelo usuário
-                    var membro = lista_de_membros[id_membro];
+                    var membro = biblioteca.Membros[idMembro];
 
-                    if (membro.Jogo_alugado != "Nenhum")
-                        throw new Exception($"\n\n{membro.Nome} já alugou um jogo\n\n" +
-                                            $"Nome do jogo: {membro.Jogo_alugado}\n" +
-                                            $"Dia do aluguel: {membro.Data_do_aluguel.Date}");
+                    if (membro.JogoAlugado != "Nenhum")
+                        throw new MembroComJogoException(membro.Nome, membro.JogoAlugado);
 
-                    Console.Write("Informe o ID do jogo que deseja alugar\n-> ");
-                    if (!int.TryParse(Helpers.LerEntradaDeDados().Trim(), out int id_jogo))
-                        throw new FormatException("ID do jogo inválido! Informe um número inteiro.");
+                    Console.Write($"\nOlá {membro.Nome}!\nInforme o ID do jogo que deseja alugar: ");
+                    int idJogo = int.Parse(Helpers.LerEntradaDeDados());
 
-                    if (!lista_de_jogos.ContainsKey(id_jogo))
-                        throw new KeyNotFoundException("ATENÇÃO: Jogo não encontrado");
+                    if (!biblioteca.Jogos.ContainsKey(idJogo))
+                        throw new JogoNaoEncontradoException(idJogo);
 
-                    // Obtém o objeto Jogo correspondente ao ID informado pelo usuário
-                    var jogo = lista_de_jogos[id_jogo];
+                    var jogo = biblioteca.Jogos[idJogo];
 
-                    // Verifica se o jogo já foi alugado
                     if (!jogo.Disponivel)
-                        throw new Exception("Jogo já alugado, volte outro dia");
+                        throw new JogoIndisponivelException(jogo.Nome);
 
-                    // Atualizando os dados
-                    jogo.MudarJogoParaIndisponivel();
-                    membro.AlterarNomeDoJogoAlugado(jogo.Nome);
-                    membro.AlterarDataDoAluguel(DateTime.Now.Date);
-                    membro.AlterarDataDaDevolucao(DateTime.Now.Date.AddDays(7.0));
+                    jogo.TornarIndisponivel();
+                    membro.AlterarJogoAlugado(jogo.Nome);
+                    membro.AlterarDataAluguel(DateTime.Now);
+                    membro.AlterarDataDevolucao(DateTime.Now.AddDays(7));
 
-                    // Atualizando os arquivos JSON
-                    JsonHelper.SalvarLista(lista_de_jogos.Values.ToList(), "Data/Biblioteca.json");
-                    JsonHelper.SalvarLista(lista_de_membros.Values.ToList(), "Data/Membros.json");
+                    Biblioteca.SalvarBiblioteca(biblioteca);
+                    RelatorioService.AtualizarRelatorio(biblioteca);
+                    Logger.Log("Arquivos JSON e txt atualizados em 'EmprestarJogo'");
 
-                    Console.Write("Alugando jogo");
+                    Console.Write("Pegando jogo da prateleira");
                     Helpers.AnimacaoDePontos(3);
-                    Console.WriteLine("\n > JOGO ALUGADO COM SUCESSO <\n\n" +
-                                      $"Membro e ID: {membro.Nome} - {membro._Id}\n" +
-                                      $"Jogo Alugado: {membro.Jogo_alugado}\n" +
-                                      $"Dia do Aluguel: {membro.Data_do_aluguel}\n" +
-                                      $"Dia de devolução: {membro.Data_de_devolucao}\n");
-                    Console.Write("Aperte ENTER para voltar ao menu...");
+                    Console.WriteLine($"\n{membro.Nome} alugou {jogo.Nome} com sucesso!");
+                    Console.Write("Aperte ENTER para continuar...");
                     Console.ReadLine();
                     break;
                 }
-                catch (Exception ex)
+                catch (ArgumentException ex)
                 {
-                    Helpers.MensagemDeExcessao(ex.Message);
-                    if (!Helpers.VerificarSeUsuarioDesejaContinuar())
-                        break;
+                    Logger.LogErro(ex);
+                    Console.WriteLine(ex.Message);
+                    if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
+                }
+                catch (FormatException ex)
+                {
+                    Logger.LogErro(ex);
+                    Console.WriteLine("ERRO: Por favor, informe um número inteiro.");
+                    if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
+                }
+                catch (LudotecaException ex)
+                {
+                    Logger.LogErro(ex);
+                    Console.WriteLine($"ERRO: {ex.Message}");
+                    if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
                 }
             }
         }

@@ -4,36 +4,36 @@ namespace LUDOTECA.Utils
 {
     public static class JsonHelper
     {
-        public static void SalvarLista<T>(List<T> lista, string caminhoArquivo)
+        private static readonly JsonSerializerOptions opcoes = new JsonSerializerOptions
         {
-            var opcoes = new JsonSerializerOptions
-            {
-                WriteIndented = true
-            };
+            WriteIndented = true,
+            PropertyNameCaseInsensitive = true
+        };
+
+        public static void SalvarLista<T>(List<T> lista, string caminho)
+        {
+            string dir = Path.GetDirectoryName(caminho) ?? "Data";
+            Directory.CreateDirectory(dir);
 
             string json = JsonSerializer.Serialize(lista, opcoes);
-            File.WriteAllText(caminhoArquivo, json);
+            File.WriteAllText(caminho, json);
         }
 
-        public static List<T> CarregarLista<T>(string caminhoArquivo)
+        public static List<T> CarregarLista<T>(string caminho)
         {
-            // Se o arquivo não existir, retorna lista vazia
-            if (!File.Exists(caminhoArquivo))
+            if (!File.Exists(caminho))
                 return new List<T>();
 
-            string json = File.ReadAllText(caminhoArquivo);
-
-            // Se o arquivo estiver vazio ou contiver apenas espaços, retorna lista vazia
+            string json = File.ReadAllText(caminho);
             if (string.IsNullOrWhiteSpace(json))
                 return new List<T>();
 
             try
             {
-                return JsonSerializer.Deserialize<List<T>>(json) ?? new List<T>();
+                return JsonSerializer.Deserialize<List<T>>(json, opcoes) ?? new List<T>();
             }
-            catch (JsonException)
+            catch
             {
-                // Caso o JSON esteja corrompido, evita a exceção e retorna lista vazia
                 return new List<T>();
             }
         }

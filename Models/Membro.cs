@@ -2,70 +2,54 @@ using System.Text.Json.Serialization;
 
 namespace LUDOTECA.Models
 {
-    /// <summary>
-    /// Representa um membro da Ludoteca.
-    /// Contém informações como ID, nome, jogo alugado e datas de aluguel e devolução.
-    /// </summary>
     public class Membro
     {
         private static Random rnd = new Random();
-        public int _Id { get; private set; } // Identificador ÚNICO do membro (usado como chave no dict)
-        public string? Nome { get; private set; } // Nome do membro
-        public string? Jogo_alugado { get; private set; } = "Nenhum"; // Nome do jogo que o usuário alugou
-        public DateTime Data_do_aluguel { get; private set; } = default; // Dia que o jogo foi alugado
-        public DateTime Data_de_devolucao { get; private set; } = default; // Dia que o jogo precisa ser devolvido
 
-        public Membro(string nome, List<Membro> Lista_de_membros)
+        public int Id { get; private set; }
+        public string Nome { get; private set; }
+        public string JogoAlugado { get; private set; } = "Nenhum";
+        public DateTime DataAluguel { get; private set; } = default;
+        public DateTime DataDevolucao { get; private set; } = default;
+
+        // Construtor para novo membro
+        public Membro(string nome, List<Membro> listaExistente)
         {
             Nome = nome;
 
-            int novo_id;
+            int novoId;
             do
             {
-                novo_id = rnd.Next(100000, 1000000);
-            } while (Lista_de_membros.Exists(m => m._Id == novo_id)); // Repete a operação caso o ID já exista
+                novoId = rnd.Next(100000, 1000000);
+            } while (listaExistente.Exists(m => m.Id == novoId));
 
-            _Id = novo_id;
+            Id = novoId;
         }
 
-        /// <summary>
-        /// Construtor usado pelo JSON para desserialização.
-        /// </summary>
         [JsonConstructor]
-        public Membro(int _Id, string? Nome, string? Jogo_alugado, DateTime Data_do_aluguel, DateTime Data_de_devolucao)
+        public Membro(int id, string nome, string jogoAlugado, DateTime dataAluguel, DateTime dataDevolucao)
         {
-            this._Id = _Id;
-            this.Nome = Nome;
-            this.Jogo_alugado = Jogo_alugado;
-            this.Data_do_aluguel = Data_do_aluguel;
-            this.Data_de_devolucao = Data_de_devolucao;
+            Id = id;
+            Nome = nome;
+            JogoAlugado = jogoAlugado ?? "Nenhum";
+            DataAluguel = dataAluguel;
+            DataDevolucao = dataDevolucao;
         }
 
-        public void AlterarDataDoAluguel(DateTime nova_data)
-        {
-            Data_do_aluguel = nova_data;
-        }
+        public void AlterarJogoAlugado(string jogo) => JogoAlugado = jogo ?? "Nenhum";
+        public void AlterarDataAluguel(DateTime data) => DataAluguel = data;
+        public void AlterarDataDevolucao(DateTime data) => DataDevolucao = data;
 
-        public void AlterarDataDaDevolucao(DateTime nova_data)
+        public void MostrarInfo()
         {
-            Data_de_devolucao = nova_data;
-        }
+            Console.Clear();
+            Console.WriteLine($@"
+>>> MEMBRO CADASTRADO <<<
 
-        public void AlterarNomeDoJogoAlugado(string? nome_jogo)
-        {
-            Jogo_alugado = nome_jogo;
-        }
-
-        /// <summary>
-        /// Mostra informações detalhadas do membro recém-cadastrado
-        /// </summary>
-        public void MostrarNovoMembroCadastrado()
-        {
-            Console.Write("\n\n>>> MEMBRO CADASTRADO COM SUCESSO <<<\n\n" +
-                             $"          ID: {_Id}\n" +
-                             $"        Nome: {Nome}\n" +
-                             $"Jogo Alugado: {Jogo_alugado}\n\n" +
-                              "Aperte ENTER para continuar...");
+  ID: {Id}
+Nome: {Nome}
+");
+            Console.Write("Aperte ENTER para continuar...");
             Console.ReadLine();
         }
     }

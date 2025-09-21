@@ -1,0 +1,11 @@
+20/09/2025 23:56:14 - Programa iniciado
+20/09/2025 23:56:29 - [ERRO] AnoInvalidoException: Ano de lançamento inválido.
+StackTrace:    at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca biblioteca) in C:\Users\Not_Vitaminado\Documents\Program\LUDOTECA.NET\Services\JogoService.cs:line 27
+20/09/2025 23:56:49 - Programa finalizado
+20/09/2025 23:59:31 - Programa iniciado
+20/09/2025 23:59:40 - NOVO USUARIO: Jao Teste da Silva (602950) cadastrado com sucesso
+20/09/2025 23:59:57 - NOVO JOGO: Sonic (749589) cadastrado com sucesso
+21/09/2025 00:00:50 - Arquivos JSON e txt atualizados em 'EmprestarJogo'
+21/09/2025 00:01:44 - Multa de R$792 gerada para Jao Teste da Silva
+21/09/2025 00:01:53 - Arquivos JSON e txt atualizados em 'DevolverJogo()'
+21/09/2025 00:02:39 - Programa finalizado

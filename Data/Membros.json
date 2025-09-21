@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 857594,
+    "Nome": "Jo\u00E3o",
+    "JogoAlugado": "Nenhum",
+    "DataAluguel": "0001-01-01T00:00:00",
+    "DataDevolucao": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": 148417,
+    "Nome": "Jao",
+    "JogoAlugado": "Nenhum",
+    "DataAluguel": "0001-01-01T00:00:00",
+    "DataDevolucao": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": 602950,
+    "Nome": "Jao Teste da Silva",
+    "JogoAlugado": "Nenhum",
+    "DataAluguel": "0001-01-01T00:00:00",
+    "DataDevolucao": "0001-01-01T00:00:00"
+  }
+]

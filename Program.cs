@@ -1,80 +1,58 @@
-﻿using LUDOTECA.Utils;
-using LUDOTECA.Services;
+﻿using LUDOTECA.Models;
 using LUDOTECA.Service;
+using LUDOTECA.Utils;
 
 namespace LUDOTECA
 {
-    /// <summary>
-    /// Classe principal do sistema Ludoteca.NET.
-    /// Contém o menu principal e coordena as operações de cadastro,
-    /// listagem, empréstimo, devolução e geração de relatórios.
-    /// </summary>
     internal class Program
     {
-        /// <summary>
-        /// Ponto de entrada da aplicação.
-        /// Exibe o menu principal e executa ações de acordo com a escolha do usuário.
-        /// </summary>
-        /// <param name="args">Argumentos da linha de comando (não utilizados).</param>
         static void Main(string[] args)
         {
+            Logger.Log("Programa iniciado");
+            Biblioteca biblioteca = Biblioteca.CarregarBiblioteca();
+            RemocaoService remocaoService = new RemocaoService();
+
             while (true)
             {
-                // Menu principal
-                Console.Write("\n\n===== LUDOTECA.NET =====\n\n" +
-                              "1 - Cadastrar jogo\n" +
-                              "2 - Cadastrar membro\n" +
-                              "3 - Listar jogos\n" +
-                              "4 - Emprestar jogo\n" +
-                              "5 - Devolver jogo\n" +
-                              "6 - Gerar Relatório\n" +
-                              "0 - Sair\n\n" +
-                              "-> ");
-                string? opcao = Console.ReadLine();
+                Console.Clear();
+                Console.Write(@"
+===== LUDOTECA.NET =====
 
-                try
+1 - Cadastrar Jogo
+2 - Cadastrar Membro
+3 - Listar Jogos
+4 - Listar Membros
+5 - Emprestar Jogo
+6 - Devolver Jogo
+7 - Gerar Relatório
+8 - Desinscrever Membro
+9 - Remover Jogo da prateleira
+
+0 - Sair
+
+-> ");
+
+                string opcao = Console.ReadLine()?.Trim() ?? "";
+
+                switch (opcao)
                 {
-                    switch (opcao)
-                    {
-                        case "0": // Sai do programa
-                            Console.WriteLine("\nATÉ MAIS, LUDOTECA :D\n");
-                            Environment.Exit(0);
-                            break;
-
-                        case "1": // Cadastra um novo jogo
-                            JogoService.CadastrarJogo();
-                            break;
-
-                        case "2": // Cadastra um novo jogo
-                            MembroService.CadastrarMembro();
-                            break;
-
-                        case "3": // Mostra a lista de jogos
-                            ListagemService.ListarJogos();
-                            break;
-
-                        case "4": // Aluga um jogo para o usuário
-                            EmprestimoService.EmprestarJogo();
-                            break;
-
-                        case "5": // Devolve um jogo alugado
-                            DevolucaoService.DevolverJogo();
-                            break;
-
-                        case "6":
-                            // Placeholder para relatório futuro
-                            Console.WriteLine("INCREMENTAR RELATORIO");
-                            Helpers.AnimacaoDePontos(5);
-                            break;
-
-                        default:
-                            throw new InvalidOperationException("ERRO: Opção inválida, tente um valor de 0 a 6");
-                    }
-                }
-                catch (InvalidOperationException ex)
-                {
-                    // Mostra mensagem de erro para o usuário
-                    Helpers.MensagemDeExcessao(ex.Message);
+                    case "1": JogoService.CadastrarJogo(biblioteca); break;
+                    case "2": MembroService.CadastrarMembro(biblioteca); break;
+                    case "3": ListagemService.ListarJogos(biblioteca); break;
+                    case "4": ListagemService.ListarMembros(biblioteca); break;
+                    case "5": EmprestimoService.EmprestarJogo(biblioteca); break;
+                    case "6": DevolucaoService.DevolverJogo(biblioteca); break;
+                    case "7": RelatorioService.MostrarRelatorio(); break;
+                    case "8": remocaoService.ExcluirMembro(biblioteca); break;
+                    case "9": remocaoService.ExcluirJogo(biblioteca); break;
+                    case "0":
+                        Logger.Log("Programa finalizado");
+                        Console.WriteLine("\nAté mais!");
+                        return;
+                    default:
+                        Console.WriteLine("ERRO: Opção inválida! Informe um número de 0 a 9.");
+                        if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
+                        break;
                 }
             }
         }

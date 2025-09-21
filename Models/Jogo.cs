@@ -2,68 +2,59 @@ using System.Text.Json.Serialization;
 
 namespace LUDOTECA.Models
 {
-    /// <summary>
-    /// Representa um jogo da Ludoteca.
-    /// Contém informações como ID, nome, categoria, ano de lançamento e disponibilidade.
-    /// </summary>
     public class Jogo
     {
         private static Random rnd = new Random();
-        public int _Id { get; private set; } // Identificador ÚNICO do jogo (usado como chave no dict)
-        public string? Nome { get; private set; } // Nome do jogo
-        public string? Categoria { get; private set; } // Categoria que o jogo se encontra
-        public int AnoDeLancamento { get; private set; } // Ano que o jogo foi lançado
-        public bool Disponivel { get; private set; } = true; // Disponibilidade do jogo
 
-        public Jogo(string nome, string categoria, int ano, List<Jogo> Lista_de_Jogos)
+        public int Id { get; private set; }
+        public string Nome { get; private set; }
+        public string Categoria { get; private set; }
+        public int AnoDeLancamento { get; private set; }
+        public bool Disponivel { get; private set; } = true;
+
+        // Construtor para novo jogo
+        public Jogo(string nome, string categoria, int ano, List<Jogo> listaExistente)
         {
             Nome = nome;
             Categoria = categoria;
             AnoDeLancamento = ano;
 
-            int novo_id;
+            int novoId;
             do
             {
-                novo_id = rnd.Next(100000, 1000000);
-            } while (Lista_de_Jogos.Exists(j => j._Id == novo_id)); // Repete a operação caso a ID já exista
+                novoId = rnd.Next(100000, 1000000);
+            } while (listaExistente.Exists(j => j.Id == novoId));
 
-            _Id = novo_id;
+            Id = novoId;
         }
 
-        /// <summary>
-        /// Construtor usado pelo JSON para desserialização.
-        /// </summary>
+        // Construtor JSON
         [JsonConstructor]
-        public Jogo(int _Id, string? Nome, string? Categoria, int AnoDeLancamento, bool Disponivel)
+        public Jogo(int id, string nome, string categoria, int anoDeLancamento, bool disponivel)
         {
-            this._Id = _Id;
-            this.Nome = Nome;
-            this.Categoria = Categoria;
-            this.AnoDeLancamento = AnoDeLancamento;
-            this.Disponivel = Disponivel;
+            Id = id;
+            Nome = nome;
+            Categoria = categoria;
+            AnoDeLancamento = anoDeLancamento;
+            Disponivel = disponivel;
         }
 
-        public void MudarJogoParaDisponivel()
-        {
-            Disponivel = true;
-        }
+        public void TornarDisponivel() => Disponivel = true;
+        public void TornarIndisponivel() => Disponivel = false;
 
-        public void MudarJogoParaIndisponivel()
+        public void MostrarInfo()
         {
-            Disponivel = false;
-        }
+            Console.Clear();
+            Console.WriteLine($@"
+>>> JOGO CADASTRADO <<<
 
-        /// <summary>
-        /// Mostra informações detalhadas do jogo recém-cadastrado
-        /// </summary>
-        public void MostrarNovoJogoCadastrado()
-        {
-            Console.Write("\n\n>>> JOGO CADASTRADO COM SUCESSO <<<\n\n" +
-                          $"               ID: {_Id}\n" +
-                          $"             Nome: {Nome}\n" +
-                          $"        Categoria: {Categoria}\n" +
-                          $"Ano de lançamento: {AnoDeLancamento}\n\n" +
-                          "Aperte ENTER para continuar...");
+       ID: {Id}
+     Nome: {Nome}
+Categoria: {Categoria}
+      Ano: {AnoDeLancamento}
+   Status: {(Disponivel ? "DISPONÍVEL" : "INDISPONÍVEL")}
+");
+            Console.Write("Aperte ENTER para continuar...");
             Console.ReadLine();
         }
     }

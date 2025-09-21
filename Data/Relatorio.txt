@@ -1,0 +1,10 @@
+=== RELATÓRIO LUDOTECA.NET ===
+Geração: 21/09/2025 00:01
+------------------------------
+Total de Jogos: 2
+Jogos Disponíveis: 2
+Jogos Alugados: 0
+Total de Membros: 3
+Membros com Jogos: 0
+------------------------------
+JOGOS ALUGADOS

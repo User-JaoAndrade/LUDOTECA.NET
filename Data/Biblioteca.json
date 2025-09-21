@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 536928,
+    "Nome": "Hollow Knight",
+    "Categoria": "MetroidLike",
+    "AnoDeLancamento": 2017,
+    "Disponivel": true
+  },
+  {
+    "Id": 749589,
+    "Nome": "Sonic",
+    "Categoria": "Plataforma",
+    "AnoDeLancamento": 1991,
+    "Disponivel": true
+  }
+]
