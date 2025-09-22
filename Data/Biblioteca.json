@@ -40,12 +40,5 @@
     "Categoria": "Estrategia",
     "AnoDeLancamento": 1500,
     "Disponivel": true
-  },
-  {
-    "Id": 899988,
-    "Nome": "Ludo",
-    "Categoria": "Estrategia",
-    "AnoDeLancamento": 1000,
-    "Disponivel": true
   }
 ]
