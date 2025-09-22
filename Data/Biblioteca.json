@@ -33,5 +33,12 @@
     "Categoria": "Metroidlike",
     "AnoDeLancamento": 2025,
     "Disponivel": true
+  },
+  {
+    "Id": 783096,
+    "Nome": "Xadrez",
+    "Categoria": "Estrategia",
+    "AnoDeLancamento": 1500,
+    "Disponivel": false
   }
 ]

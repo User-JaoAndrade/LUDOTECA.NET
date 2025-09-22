@@ -33,3 +33,36 @@ StackTrace:    at LUDOTECA.Service.EmprestimoService.EmprestarJogo(Biblioteca bi
 21/09/2025 17:14:47 - Multa de R$4 gerada para João
 21/09/2025 17:15:02 - Arquivos JSON e txt atualizados em 'DevolverJogo()'
 21/09/2025 17:15:35 - Programa finalizado
+22/09/2025 00:22:32 - Programa iniciado
+22/09/2025 00:22:56 - [ERRO] ArgumentException: Valor inválido. Informe um valor não vazio.
+StackTrace:    at LUDOTECA.Utils.Helpers.LerEntradaDeDados() in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Utils\Helpers.cs:line 9
+   at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\JogoService.cs:line 18
+22/09/2025 00:23:43 - [ERRO] AnoInvalidoException: Ano de lançamento inválido.
+StackTrace:    at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\JogoService.cs:line 25
+22/09/2025 00:24:03 - NOVO JOGO: Xadrez (783096) cadastrado com sucesso
+22/09/2025 00:24:54 - NOVO USUARIO: Jaozin amostrado da silva (480136) cadastrado com sucesso
+22/09/2025 00:37:10 - Programa iniciado
+22/09/2025 00:38:57 - Programa iniciado
+22/09/2025 00:39:44 - Programa iniciado
+22/09/2025 00:39:48 - KeyNotFoundException: ID NAO ENCONTRADA
+22/09/2025 00:39:54 - Programa finalizado
+22/09/2025 00:41:07 - Programa iniciado
+22/09/2025 00:41:12 - KeyNotFoundException: ID NAO ENCONTRADA
+22/09/2025 00:41:37 - [ERRO] JogoNaoEncontradoException: Jogo com ID 13 não encontrado.
+StackTrace:    at LUDOTECA.Service.EmprestimoService.EmprestarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\EmprestimoService.cs:line 33
+22/09/2025 00:44:52 - Programa finalizado
+22/09/2025 00:45:34 - Programa iniciado
+22/09/2025 00:45:39 - [ERRO] ArgumentException: Valor inválido. Informe um valor não vazio.
+StackTrace:    at LUDOTECA.Utils.Helpers.LerEntradaDeDados() in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Utils\Helpers.cs:line 9
+   at LUDOTECA.Service.EmprestimoService.EmprestarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\EmprestimoService.cs:line 19
+22/09/2025 00:45:42 - KeyNotFoundException: MEMBRO NAO ENCONTRADO
+22/09/2025 00:46:17 - Programa iniciado
+22/09/2025 00:46:24 - KeyNotFoundException: MEMBRO NAO ENCONTRADO
+22/09/2025 00:46:39 - [ERRO] JogoNaoEncontradoException: Jogo com ID 12123 não encontrado.
+StackTrace:    at LUDOTECA.Service.EmprestimoService.EmprestarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\EmprestimoService.cs:line 33
+22/09/2025 00:47:23 - Arquivos JSON e txt atualizados em 'EmprestarJogo'
+22/09/2025 00:47:32 - [ERRO] MembroComJogoException: Jaozin amostrado da silva já alugou: Xadrez.
+StackTrace:    at LUDOTECA.Service.EmprestimoService.EmprestarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\EmprestimoService.cs:line 27
+22/09/2025 00:48:05 - [ERRO] JogoIndisponivelException: O jogo 'Xadrez' já está alugado.
+StackTrace:    at LUDOTECA.Service.EmprestimoService.EmprestarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\EmprestimoService.cs:line 38
+22/09/2025 00:48:13 - Programa finalizado

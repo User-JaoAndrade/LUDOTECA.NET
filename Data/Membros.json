@@ -19,5 +19,12 @@
     "JogoAlugado": "Nenhum",
     "DataAluguel": "0001-01-01T00:00:00",
     "DataDevolucao": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": 480136,
+    "Nome": "Jaozin amostrado da silva",
+    "JogoAlugado": "Xadrez",
+    "DataAluguel": "2025-09-22T00:47:23.2732208-03:00",
+    "DataDevolucao": "2025-09-29T00:47:23.2732483-03:00"
   }
 ]

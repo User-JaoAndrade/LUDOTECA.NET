@@ -53,6 +53,12 @@ namespace LUDOTECA.Service
                     Console.ReadLine();
                     break;
                 }
+                catch (KeyNotFoundException) // [AV1-5]
+                {
+                    Logger.Log("KeyNotFoundException: MEMBRO NAO ENCONTRADO");
+                    Console.WriteLine("ERRO: membro não encontrado");
+                    if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
+                }
                 catch (ArgumentException ex) // [AV1-5]
                 {
                     Logger.LogErro(ex);

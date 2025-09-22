@@ -1,10 +1,15 @@
 === RELATÓRIO LUDOTECA.NET ===
-Geração: 21/09/2025 17:15
+Geração: 22/09/2025 00:47
 ------------------------------
-Total de Jogos: 5
+Total de Jogos: 6
 Jogos Disponíveis: 5
-Jogos Alugados: 0
-Total de Membros: 3
-Membros com Jogos: 0
+Jogos Alugados: 1
+Total de Membros: 4
+Membros com Jogos: 1
 ------------------------------
 JOGOS ALUGADOS
+Membro: Jaozin amostrado da silva | ID: 480136
+Jogo: Xadrez
+Data Aluguel: 22/09/2025
+Data Devolução: 29/09/2025
+------------------------------
