@@ -11,7 +11,7 @@
     "Nome": "Sonic",
     "Categoria": "Plataforma",
     "AnoDeLancamento": 1991,
-    "Disponivel": true
+    "Disponivel": false
   },
   {
     "Id": 738168,
@@ -39,6 +39,13 @@
     "Nome": "Xadrez",
     "Categoria": "Estrategia",
     "AnoDeLancamento": 1500,
-    "Disponivel": false
+    "Disponivel": true
+  },
+  {
+    "Id": 899988,
+    "Nome": "Ludo",
+    "Categoria": "Estrategia",
+    "AnoDeLancamento": 1000,
+    "Disponivel": true
   }
 ]

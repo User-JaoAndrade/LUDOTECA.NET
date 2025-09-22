@@ -97,7 +97,7 @@ namespace LUDOTECA.Service
             if (dataEntrega < dataAluguel)
                 throw new ArgumentException("Data de devolução inválida: não pode ser anterior à data do aluguel.");
 
-            int atraso = Math.Max(0, (dataEntrega - dataDevolucaoPrevista).Days);
+            int atraso = dataEntrega.Date.Day - dataDevolucaoPrevista.Date.Day;
 
             return atraso * 2;
         }
