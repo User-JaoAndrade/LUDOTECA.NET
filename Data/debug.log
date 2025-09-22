@@ -1,8 +1,0 @@
-22/09/2025 01:22:21 - Programa iniciado
-22/09/2025 01:22:41 - [ERRO] ArgumentException: Valor inválido. Informe um valor não vazio.
-StackTrace:    at LUDOTECA.Utils.Helpers.LerEntradaDeDados() in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Utils\Helpers.cs:line 9
-   at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\JogoService.cs:line 18
-22/09/2025 01:22:57 - [ERRO] AnoInvalidoException: Ano de lançamento inválido.
-StackTrace:    at LUDOTECA.Service.JogoService.CadastrarJogo(Biblioteca biblioteca) in C:\Users\usern\OneDrive\Documentos\uma pasta de programas\LUDOTECA.NET\Services\JogoService.cs:line 25
-22/09/2025 01:23:18 - NOVO JOGO: Ludo (800475) cadastrado com sucesso
-22/09/2025 01:23:49 - NOVO USUARIO: Joao testador (530851) cadastrado com sucesso
