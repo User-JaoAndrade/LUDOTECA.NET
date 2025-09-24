@@ -12,7 +12,6 @@ namespace LUDOTECA.Models
         public DateTime DataAluguel { get; private set; } = default; // [AV1-2]
         public DateTime DataDevolucao { get; private set; } = default; // [AV1-2]
 
-        // Construtor para novo membro
         public Membro(string nome, List<Membro> listaExistente)
         {
             Nome = nome;

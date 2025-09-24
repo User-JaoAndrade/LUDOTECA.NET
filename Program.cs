@@ -32,7 +32,7 @@ namespace LUDOTECA
 
 -> ");
 
-                string opcao = Console.ReadLine()?.Trim() ?? "";
+                string opcao = Console.ReadLine();
 
                 switch (opcao)
                 {
@@ -51,7 +51,8 @@ namespace LUDOTECA
                         return;
                     default:
                         Console.WriteLine("ERRO: Opção inválida! Informe um número de 0 a 9.");
-                        if (!Helpers.VerificarSeUsuarioDesejaContinuar()) break;
+                        Console.Write("Aperte ENTER para continuar...");
+                        Console.ReadLine();
                         break;
                 }
             }

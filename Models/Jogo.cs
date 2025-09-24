@@ -12,7 +12,6 @@ namespace LUDOTECA.Models
         public int AnoDeLancamento { get; private set; } // [AV1-2]
         public bool Disponivel { get; private set; } = true; // [AV1-2]
 
-        // Construtor para novo jogo
         public Jogo(string nome, string categoria, int ano, List<Jogo> listaExistente)
         {
             Nome = nome;
@@ -28,7 +27,6 @@ namespace LUDOTECA.Models
             Id = novoId;
         }
 
-        // Construtor JSON
         [JsonConstructor]
         public Jogo(int id, string nome, string categoria, int anoDeLancamento, bool disponivel)
         {
