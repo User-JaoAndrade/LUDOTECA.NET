@@ -9,7 +9,7 @@ LUDOTECA.NET é um sistema em **C#** para gerenciar jogos, permitindo cadastrar 
 2. 06010109: Carlos Leonardo Carvalho Otoline
 3. 06008892: Arthur Fita Santana
 4. 06005334: Giulia Muniz da Costa Massafra 
-
+5. 06009870: Gabriel de Jesus Lopes Azevedo
 ---
 
 ### Pré-requisitos
@@ -93,4 +93,4 @@ Devolução com multa
 ![Devolução](evidencias/av1/5_Devolucao_com_calculo_de_multa.png)
 
 ---
-
+[VIDEO EXPLICATIVO](https://vimeo.com/1122334841?share=copy)

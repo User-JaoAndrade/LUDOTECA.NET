@@ -12,6 +12,7 @@ namespace LUDOTECA.Models
         public DateTime DataAluguel { get; private set; } = default; // [AV1-2]
         public DateTime DataDevolucao { get; private set; } = default; // [AV1-2]
 
+        // Construtor para novo membro
         public Membro(string nome, List<Membro> listaExistente)
         {
             Nome = nome;
@@ -25,6 +26,7 @@ namespace LUDOTECA.Models
             Id = novoId;
         }
 
+        // Construtor que usa o Arquivo Json
         [JsonConstructor]
         public Membro(int id, string nome, string jogoAlugado, DateTime dataAluguel, DateTime dataDevolucao)
         {
